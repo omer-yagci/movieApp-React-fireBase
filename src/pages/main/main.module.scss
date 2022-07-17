@@ -1,0 +1,28 @@
+.main {
+  background-color: grey;
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input,
+    .btn {
+      font-size: 1.8rem;
+      margin: 0.7rem 0;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .input:focus {
+      outline: none;
+    }
+    .btn {
+      border: 1px solid black;
+      cursor: pointer;
+      &:hover {
+        color: white;
+        background-color: black;
+      }
+    }
+  }
+}
