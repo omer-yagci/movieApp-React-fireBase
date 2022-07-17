@@ -1,0 +1,54 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  background-color: #f3f3f3;
+  .left {
+    width: 45%;
+    img {
+      width: 50vw;
+      height: 100vh;
+      background-size: cover;
+      object-fit: fill;
+    }
+  }
+  .right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 4rem;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      label {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 1.3rem;
+      }
+      input {
+        padding: 0.3rem;
+        margin: 0.2rem;
+      }
+      a {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        color: blue;
+      }
+    }
+    .btn {
+      background-color: lightblue;
+      color: white;
+      width: 40%;
+      padding: 0.2rem;
+      margin: 1rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
+}
