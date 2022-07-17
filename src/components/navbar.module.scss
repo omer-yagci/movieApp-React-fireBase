@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue;
+
+  .title {
+    text-decoration: none;
+    color: white;
+    margin: 0 3rem;
+    font-size: 1.4rem;
+  }
+
+  .link-container {
+    ul {
+      display: flex;
+
+      li {
+        border: 2px solid white;
+        padding: 0.5rem;
+        margin: 1rem;
+        list-style: none;
+        .btn {
+          color: red;
+        }
+      }
+    }
+  }
+}
