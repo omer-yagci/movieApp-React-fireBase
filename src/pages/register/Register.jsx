@@ -20,44 +20,44 @@ const Register = () => {
                   </h2>
                   <form className="w-auto">
                     <div className="form-outline mb-4">
+                      <label className="form-label" htmlFor="form3Example1cg">
+                        Your Name
+                      </label>
                       <input
                         type="text"
                         id="form3Example1cg"
                         className="form-control form-control-lg"
                       />
-                      <label className="form-label" htmlFor="form3Example1cg">
-                        Your Name
-                      </label>
                     </div>
                     <div className="form-outline mb-4">
+                      <label className="form-label" htmlFor="form3Example3cg">
+                        Your Email
+                      </label>
                       <input
                         type="email"
                         id="form3Example3cg"
                         className="form-control form-control-lg"
                       />
-                      <label className="form-label" htmlFor="form3Example3cg">
-                        Your Email
-                      </label>
                     </div>
                     <div className="form-outline mb-4">
+                      <label className="form-label" htmlFor="form3Example4cg">
+                        Password
+                      </label>
                       <input
                         type="password"
                         id="form3Example4cg"
                         className="form-control form-control-lg"
                       />
-                      <label className="form-label" htmlFor="form3Example4cg">
-                        Password
-                      </label>
                     </div>
                     <div className="form-outline mb-4">
+                      <label className="form-label" htmlFor="form3Example4cdg">
+                        Repeat your password
+                      </label>
                       <input
                         type="password"
                         id="form3Example4cdg"
                         className="form-control form-control-lg"
                       />
-                      <label className="form-label" htmlFor="form3Example4cdg">
-                        Repeat your password
-                      </label>
                     </div>
                     <div className="form-check d-flex justify-content-center mb-5">
                       <input
