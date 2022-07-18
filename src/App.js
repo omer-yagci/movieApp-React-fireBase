@@ -5,9 +5,9 @@ import "./scss/App.scss";
 
 function App() {
   return (
-    <div className="App">
+    <AuthContext>
       <Router />
-    </div>
+    </AuthContext>
   );
 }
 
