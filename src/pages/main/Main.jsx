@@ -3,12 +3,25 @@ import mainStyles from "../main/main.module.scss";
 import { useMovieContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MoveDetail from "../movedetail/MoveDetail";
 
 const Main = () => {
-  const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
-    useMovieContext();
+  const {
+    isLogin,
+    setIsLoggin,
+    movieInputHandler,
+    movie,
+    formSubmitHandler,
+    getDataFromMovies,
+    query,
+  } = useMovieContext();
 
-  console.log(movie);
+  const { results } = movie;
+  // const { results } = query;
+
+  console.log("this is results", results);
+  console.log("this is query", query);
+
   if (isLogin) {
     // toast.success("Successful Login");
     // setTimeout(() => {
@@ -24,7 +37,7 @@ const Main = () => {
             type="text"
             className={mainStyles.input}
             onChange={movieInputHandler}
-            value={movie}
+            // value={query}
           />
           <button className={mainStyles.btn}>Search</button>
         </form>
@@ -40,6 +53,12 @@ const Main = () => {
           draggable
           pauseOnHover
         />
+        <div>
+          {results?.map((result, index) => {
+            const { id } = result;
+            return <MoveDetail key={id} result={result} />;
+          })}
+        </div>
       </main>
     );
   } else {
