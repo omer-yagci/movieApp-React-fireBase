@@ -37,6 +37,7 @@ const AuthContext = ({ children }) => {
       const { data } = await axios.get(movieSearchAPI);
       // console.log(data.results);
       setQuery(data);
+      setMovie(data);
     } catch (error) {
       console.log(error);
     }
@@ -45,11 +46,8 @@ const AuthContext = ({ children }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     getDataFromMovies();
-    setMovie({ query });
   };
   const movieInputHandler = (e) => {
-    // setMovie(e.target.value);
-
     setQuery(e.target.value);
   };
 
