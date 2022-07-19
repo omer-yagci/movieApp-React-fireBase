@@ -25,7 +25,7 @@ const AuthContext = ({ children }) => {
   const getDataFromAPI = async () => {
     try {
       const { data } = await axios.get(url);
-      console.log(data.results);
+      // console.log(data.results);
       setMovie(data);
     } catch (error) {
       console.log(error);

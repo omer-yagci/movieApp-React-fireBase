@@ -6,21 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import MoveDetail from "../movedetail/MoveDetail";
 
 const Main = () => {
-  const {
-    isLogin,
-    setIsLoggin,
-    movieInputHandler,
-    movie,
-    formSubmitHandler,
-    getDataFromMovies,
-    query,
-  } = useMovieContext();
+  const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
+    useMovieContext();
 
   const { results } = movie;
-  // const { results } = query;
-
-  console.log("this is results", results);
-  console.log("this is query", query);
 
   if (isLogin) {
     // toast.success("Successful Login");
@@ -53,7 +42,7 @@ const Main = () => {
           draggable
           pauseOnHover
         />
-        <div>
+        <div className="card-group">
           {results?.map((result, index) => {
             const { id } = result;
             return <MoveDetail key={id} result={result} />;

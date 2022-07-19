@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+
     .input,
     .btn {
       font-size: 1.8rem;
@@ -30,5 +30,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    background-color: aqua;
   }
 }
