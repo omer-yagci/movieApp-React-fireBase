@@ -1,35 +1,78 @@
-.main {
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: lightgray;
 
-  .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .input,
-    .btn {
-      font-size: 1.8rem;
-      margin: 0.7rem 0;
-      border: none;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-    .input:focus {
-      outline: none;
-    }
-    .btn {
-      border: 1px solid black;
-      cursor: pointer;
-      &:hover {
-        color: white;
-        background-color: black;
-      }
+  .input,
+  .btn {
+    font-size: 1.8rem;
+    margin: 0.7rem 0;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  .input:focus {
+    outline: none;
+  }
+  .btn {
+    border: 1px solid black;
+    cursor: pointer;
+    &:hover {
+      color: white;
+      background-color: black;
     }
   }
-  .movie-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: aqua;
+}
+
+.main {
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1rem auto;
+  gap: 2rem;
+
+  .card {
+    background-color: lightblue;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+    height: 88vh;
+    &:hover .card-body {
+      transform: translateY(0%);
+    }
+    .movie-img {
+      width: 350px;
+      height: 400px;
+      object-fit: cover;
+      margin-left: 2rem;
+    }
+    h5 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .card-body {
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      font-size: 1.5rem;
+      padding: 1rem;
+      transform: translateY(100%);
+      z-index: 1;
+      transition: transform 0.7s ease-in-out;
+    }
+    .movie-btn {
+      padding: 0.3rem;
+      text-align: center;
+      width: 60%;
+      margin: 2rem 0;
+      margin-left: 3rem;
+    }
   }
 }

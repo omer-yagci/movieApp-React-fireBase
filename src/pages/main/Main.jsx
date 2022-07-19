@@ -5,6 +5,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MoveDetail from "../movedetail/MoveDetail";
 
+import defaultImg from "../../assests/defaultImage.png";
+const baseURL = "https://image.tmdb.org/t/p/w500";
+
 const Main = () => {
   const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
     useMovieContext();
@@ -17,7 +20,7 @@ const Main = () => {
     //   toast.dismiss();
     // }, 2000);
     return (
-      <main className={mainStyles.main}>
+      <>
         <form
           onSubmit={formSubmitHandler}
           className={mainStyles["form-container"]}
@@ -42,13 +45,35 @@ const Main = () => {
           draggable
           pauseOnHover
         />
-        <div className="card-group">
+        <main className={mainStyles.main}>
           {results?.map((result, index) => {
-            const { id } = result;
-            return <MoveDetail key={id} result={result} />;
+            console.log(result);
+
+            const { backdrop_path, original_title, overview, title, id } =
+              result;
+            return (
+              <div className={mainStyles["card"]}>
+                <div key={id}>
+                  <img
+                    src={backdrop_path ? baseURL + backdrop_path : defaultImg}
+                    alt={title}
+                    className={mainStyles["movie-img"]}
+                  />
+                  <div className={mainStyles["card-body"]}>
+                    <h5>{original_title} </h5>
+                    <p className="card-text">
+                      {overview}
+                      <button className={mainStyles["movie-btn"]}>
+                        More Info
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
           })}
-        </div>
-      </main>
+        </main>
+      </>
     );
   } else {
     setIsLoggin(false);
