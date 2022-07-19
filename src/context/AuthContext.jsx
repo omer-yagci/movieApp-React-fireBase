@@ -27,16 +27,18 @@ const AuthContext = ({ children }) => {
       console.log(error);
     }
   };
-
+  const movieInputHandler = (e) => {
+    setMovie(e.target.value);
+  };
   const checkEmailLength = (e) => {
     setEmail(e.target.value);
   };
   const checkPasswordLength = (e) => {
     setPassword(e.target.value);
   };
-  // useEffect(() => {
-  //   getDataFromAPI();
-  // }, []);
+  useEffect(() => {
+    getDataFromAPI();
+  }, [movie]);
   const values = {
     password,
     email,
@@ -45,6 +47,7 @@ const AuthContext = ({ children }) => {
     checkPasswordLength,
     isLogin,
     setIsLoggin,
+    movieInputHandler,
   };
   return (
     <MovieListContext.Provider value={values}>

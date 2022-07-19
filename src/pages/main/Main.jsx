@@ -5,18 +5,29 @@ import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
 const Main = () => {
-  const { isLogin, setIsLoggin } = useMovieContext();
+  const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
+    useMovieContext();
+
+  console.log(movie);
   if (isLogin) {
-    toast.success("Successful Login");
-    setTimeout(() => {
-      toast.dismiss();
-    }, 5000);
+    // toast.success("Successful Login");
+    // setTimeout(() => {
+    //   toast.dismiss();
+    // }, 2000);
     return (
       <main className={mainStyles.main}>
-        <form className={mainStyles["form-container"]}>
-          <input type="text" className={mainStyles.input} />
+        <form
+          // onSubmit={formSubmitHandler}
+          className={mainStyles["form-container"]}
+        >
+          <input
+            type="text"
+            className={mainStyles.input}
+            onChange={movieInputHandler}
+          />
           <button className={mainStyles.btn}>Search</button>
         </form>
+
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -34,7 +45,7 @@ const Main = () => {
     setIsLoggin(false);
     return (
       <div>
-        <h1>Hay amk</h1>
+        <h1>HATA!</h1>
       </div>
     );
   }
