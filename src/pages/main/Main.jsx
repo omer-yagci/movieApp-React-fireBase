@@ -2,7 +2,7 @@ import React from "react";
 import mainStyles from "../main/main.module.scss";
 import { useMovieContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const Main = () => {
   const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
@@ -17,13 +17,14 @@ const Main = () => {
     return (
       <main className={mainStyles.main}>
         <form
-          // onSubmit={formSubmitHandler}
+          onSubmit={formSubmitHandler}
           className={mainStyles["form-container"]}
         >
           <input
             type="text"
             className={mainStyles.input}
             onChange={movieInputHandler}
+            value={movie}
           />
           <button className={mainStyles.btn}>Search</button>
         </form>

@@ -10,13 +10,18 @@ export const useMovieContext = () => {
 };
 
 const AuthContext = ({ children }) => {
-  const [movie, setMovie] = useState("");
+  const [movie, setMovie] = useState([]);
+
+  const [query, setQuery] = useState("");
+
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
+
   const [isLogin, setIsLoggin] = useState(true);
 
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const url = `https://api.themoviedb.org/3/movie/550?api_key=${API_KEY}`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
 
   const getDataFromAPI = async () => {
     try {
@@ -26,6 +31,10 @@ const AuthContext = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
   };
   const movieInputHandler = (e) => {
     setMovie(e.target.value);
@@ -38,7 +47,7 @@ const AuthContext = ({ children }) => {
   };
   useEffect(() => {
     getDataFromAPI();
-  }, [movie]);
+  }, []);
   const values = {
     password,
     email,
@@ -48,6 +57,7 @@ const AuthContext = ({ children }) => {
     isLogin,
     setIsLoggin,
     movieInputHandler,
+    formSubmitHandler,
   };
   return (
     <MovieListContext.Provider value={values}>
