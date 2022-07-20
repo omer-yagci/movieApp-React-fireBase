@@ -52,7 +52,7 @@ const Main = () => {
         />
         <main className={mainStyles.main}>
           {results?.map((result, index) => {
-            console.log(result);
+            // console.log(result);
 
             const { backdrop_path, original_title, overview, title, id } =
               result;

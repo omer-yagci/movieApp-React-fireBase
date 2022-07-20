@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import registerStyles from "../register/register.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createUser } from "../../auth/firebase";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerName, setRegisterName] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const navigate = useNavigate();
 
   const registerFormSubmit = (event) => {
     event.preventDefault();
-    console.log(registerName, registerPassword);
+    createUser(registerEmail, registerPassword, navigate);
   };
 
   return (
