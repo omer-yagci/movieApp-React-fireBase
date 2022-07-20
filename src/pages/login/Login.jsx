@@ -14,6 +14,7 @@ const Login = () => {
     useMovieContext();
 
   const loginSubmitHandler = (event) => {
+    // console.log(password, email);
     event.preventDefault();
     if (password.length <= 0 || email.length <= 0) {
       toast.warn(
