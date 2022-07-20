@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import registerStyles from "../register/register.module.scss";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerName, setRegisterName] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  const registerFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(registerName, registerPassword);
+  };
+
   return (
     <section
       style={{
@@ -20,45 +29,42 @@ const Register = () => {
                   </h2>
                   <form className="w-auto">
                     <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="form3Example1cg">
+                      <label className="form-label" htmlFor="name">
                         Your Name
                       </label>
                       <input
                         type="text"
-                        id="form3Example1cg"
+                        id="name"
                         className="form-control form-control-lg"
+                        // value={registerName}
+                        onChange={(e) => setRegisterName(e.target.value)}
                       />
                     </div>
                     <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="form3Example3cg">
+                      <label className="form-label" htmlFor="email">
                         Your Email
                       </label>
                       <input
                         type="email"
-                        id="form3Example3cg"
+                        // value={registerEmail}
+                        id="email"
                         className="form-control form-control-lg"
+                        onChange={(e) => setRegisterEmail(e.target.value)}
                       />
                     </div>
                     <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="form3Example4cg">
+                      <label className="form-label" htmlFor="password">
                         Password
                       </label>
                       <input
                         type="password"
-                        id="form3Example4cg"
+                        id="password"
                         className="form-control form-control-lg"
+                        // value={registerPassword}
+                        onChange={(e) => setRegisterPassword(e.target.value)}
                       />
                     </div>
-                    <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="form3Example4cdg">
-                        Repeat your password
-                      </label>
-                      <input
-                        type="password"
-                        id="form3Example4cdg"
-                        className="form-control form-control-lg"
-                      />
-                    </div>
+
                     <div className="form-check d-flex justify-content-center mb-5">
                       <input
                         className="form-check-input me-2"
@@ -70,7 +76,7 @@ const Register = () => {
                         className="form-check-label"
                         htmlFor="form2Example3g"
                       >
-                        I agree all statements in{" "}
+                        I agree all statements in
                         <a href="#!" className="text-body">
                           <u>Terms of service</u>
                         </a>
@@ -78,6 +84,7 @@ const Register = () => {
                     </div>
                     <div className="d-flex justify-content-center">
                       <button
+                        onClick={registerFormSubmit}
                         type="button"
                         className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
                         id={registerStyles.btn}
