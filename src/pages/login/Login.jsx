@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useMovieContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { sigIn } from "../../auth/firebase";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,25 +15,26 @@ const Login = () => {
     useMovieContext();
 
   const loginSubmitHandler = (event) => {
-    // console.log(password, email);
     event.preventDefault();
-    if (password.length <= 0 || email.length <= 0) {
-      toast.warn(
-        "Required fields cannot be left blank",
-        { toastId: "asdasdasdasd" },
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
-    } else {
-      navigate("/");
-    }
+    sigIn(password, email, navigate);
+    console.log(password, email);
+
+    // if (password.length <= 0 || email.length <= 0) {
+    //   toast.warn(
+    //     "Required fields cannot be left blank",
+    //     { toastId: "asdasdasdasd" },
+    //     {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //     }
+    //   );
+    // } else {
+    // }
   };
   return (
     <div className={loginStyles.container}>
@@ -49,7 +51,7 @@ const Login = () => {
             id="email"
             name="email"
             onChange={checkEmailLength}
-            value={email}
+            // value={email}
           />
 
           <label htmlFor="password">Password</label>
@@ -58,7 +60,7 @@ const Login = () => {
             id="password"
             name="password"
             onChange={checkPasswordLength}
-            value={password}
+            // value={password}
           />
 
           <a href="/register">Forgot Your Password?</a>

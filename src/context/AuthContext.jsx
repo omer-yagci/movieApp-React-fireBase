@@ -25,7 +25,7 @@ const AuthContext = ({ children }) => {
   const getDataFromAPI = async () => {
     try {
       const { data } = await axios.get(url);
-      // console.log(data.results);
+
       setMovie(data);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ const AuthContext = ({ children }) => {
   const getDataFromMovies = async () => {
     try {
       const { data } = await axios.get(movieSearchAPI);
-      // console.log(data.results);
+
       setQuery(data);
       setMovie(data);
     } catch (error) {

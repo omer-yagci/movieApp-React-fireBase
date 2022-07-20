@@ -5,7 +5,7 @@ import { createUser } from "../../auth/firebase";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
-  const [registerName, setRegisterName] = useState("");
+  // const [registerName, setRegisterName] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const Register = () => {
                         id="name"
                         className="form-control form-control-lg"
                         // value={registerName}
-                        onChange={(e) => setRegisterName(e.target.value)}
+                        // onChange={(e) => setRegisterName(e.target.value)}
                       />
                     </div>
                     <div className="form-outline mb-4">
@@ -48,7 +48,7 @@ const Register = () => {
                       </label>
                       <input
                         type="email"
-                        // value={registerEmail}
+                        value={registerEmail}
                         id="email"
                         className="form-control form-control-lg"
                         onChange={(e) => setRegisterEmail(e.target.value)}
@@ -62,7 +62,7 @@ const Register = () => {
                         type="password"
                         id="password"
                         className="form-control form-control-lg"
-                        // value={registerPassword}
+                        value={registerPassword}
                         onChange={(e) => setRegisterPassword(e.target.value)}
                       />
                     </div>

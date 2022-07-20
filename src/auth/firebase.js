@@ -36,3 +36,18 @@ export const createUser = async (email, password, navigate) => {
     console.log(error);
   }
 };
+
+// !Email ve Password ile girişi etkin kıl
+export const sigIn = async (email, password, navigate) => {
+  try {
+    let userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    navigate("/");
+    console.log(userCredential);
+  } catch (error) {
+    console.log(error);
+  }
+};
