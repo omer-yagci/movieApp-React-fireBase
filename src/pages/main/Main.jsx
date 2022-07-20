@@ -4,6 +4,7 @@ import { useMovieContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MoveDetail from "../movedetail/MoveDetail";
+import { useNavigate } from "react-router-dom";
 
 import defaultImg from "../../assests/defaultImage.png";
 const baseURL = "https://image.tmdb.org/t/p/w500";
@@ -11,8 +12,12 @@ const baseURL = "https://image.tmdb.org/t/p/w500";
 const Main = () => {
   const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
     useMovieContext();
-
+  const navigate = useNavigate();
   const { results } = movie;
+
+  const moreInfoClickHandler = () => {
+    navigate("details", { state: movie });
+  };
 
   if (isLogin) {
     // toast.success("Successful Login");
@@ -52,21 +57,26 @@ const Main = () => {
             const { backdrop_path, original_title, overview, title, id } =
               result;
             return (
-              <div className={mainStyles["card"]}>
-                <div key={id}>
-                  <img
-                    src={backdrop_path ? baseURL + backdrop_path : defaultImg}
-                    alt={title}
-                    className={mainStyles["movie-img"]}
-                  />
-                  <div className={mainStyles["card-body"]}>
-                    <h5>{original_title} </h5>
-                    <p className="card-text">
-                      {overview}
-                      <button className={mainStyles["movie-btn"]}>
-                        More Info
+              <div className={mainStyles.grid} key={id}>
+                <div className={mainStyles["grid-item"]}>
+                  <div className={mainStyles["card"]}>
+                    <img
+                      className={mainStyles["card-img"]}
+                      src={backdrop_path ? baseURL + backdrop_path : defaultImg}
+                      alt={title}
+                    />
+                    <div className={mainStyles["card-content"]}>
+                      <h1 className={mainStyles["card-header"]}>
+                        {original_title}
+                      </h1>
+                      <p className={mainStyles["card-text"]}>{overview}</p>
+                      <button
+                        onClick={moreInfoClickHandler}
+                        className={mainStyles["card-btn"]}
+                      >
+                        More Detail <span>→</span>
                       </button>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
