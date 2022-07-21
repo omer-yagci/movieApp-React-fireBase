@@ -1,13 +1,16 @@
 import { initializeApp } from "firebase/app";
-
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
+// import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
 
-// ?: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
   authDomain: process.env.REACT_APP_authDomain,
@@ -23,22 +26,30 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export const createUser = async (email, password, navigate) => {
+export const createUser = async (email, password, navigate, displayName) => {
   try {
     let userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+
+    await updateProfile(auth.currentUser, {
+      displayName: displayName,
+    });
+    // toastSuccessNotify("Registered successfully!");
     navigate("/");
     console.log(userCredential);
-  } catch (error) {
-    console.log(error);
+    console.log(displayName);
+  } catch (err) {
+    // toastErrorNotify(err.message);
   }
 };
 
-// !Email ve Password ile girişi etkin kıl
-export const sigIn = async (email, password, navigate) => {
+//* https://console.firebase.google.com/
+//* => Authentication => sign-in-method => enable Email/password
+//! Email/password ile girişi enable yap
+export const signIn = async (email, password, navigate) => {
   try {
     let userCredential = await signInWithEmailAndPassword(
       auth,
@@ -46,8 +57,41 @@ export const sigIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
+    // toastSuccessNotify("Logged in successfully!");
+
     console.log(userCredential);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    // toastErrorNotify(err.message);
+    console.log(err);
   }
+};
+
+export const userObserver = (setCurrentUser) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setCurrentUser(user);
+    } else {
+      // User is signed out
+      setCurrentUser(false);
+    }
+  });
+};
+
+export const logOut = () => {
+  signOut(auth);
+};
+
+export const signUpProvider = (navigate) => {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+      navigate("/");
+      // toastSuccessNotify("Logged out successfully!");
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      console.log(error);
+    });
 };

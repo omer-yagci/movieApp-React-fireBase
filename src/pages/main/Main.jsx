@@ -10,14 +10,15 @@ import defaultImg from "../../assests/defaultImage.png";
 const baseURL = "https://image.tmdb.org/t/p/w500";
 
 const Main = () => {
+  // const { id } = useParams;
   const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
     useMovieContext();
   const navigate = useNavigate();
   const { results } = movie;
 
-  const moreInfoClickHandler = () => {
-    navigate("details", { state: movie });
-  };
+  // const moreInfoClickHandler = () => {
+  //   navigate("/details/" + id);
+  // };
 
   if (isLogin) {
     // toast.success("Successful Login");
@@ -52,8 +53,6 @@ const Main = () => {
         />
         <main className={mainStyles.main}>
           {results?.map((result, index) => {
-            // console.log(result);
-
             const { backdrop_path, original_title, overview, title, id } =
               result;
             return (
@@ -71,7 +70,7 @@ const Main = () => {
                       </h1>
                       <p className={mainStyles["card-text"]}>{overview}</p>
                       <button
-                        onClick={moreInfoClickHandler}
+                        onClick={() => navigate("/details/" + id)}
                         className={mainStyles["card-btn"]}
                       >
                         More Detail <span>→</span>

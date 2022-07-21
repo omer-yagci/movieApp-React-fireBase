@@ -2,112 +2,95 @@ import React, { useState } from "react";
 import registerStyles from "../register/register.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../auth/firebase";
+import registerImage from "../../assests/registerImage.jpg";
 
 const Register = () => {
-  const [registerEmail, setRegisterEmail] = useState("");
-  // const [registerName, setRegisterName] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const registerFormSubmit = (event) => {
-    event.preventDefault();
-    createUser(registerEmail, registerPassword, navigate);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const displayName = `${firstName} ${lastName}`;
+    console.log(firstName, lastName);
+    createUser(email, password, navigate, displayName);
   };
 
   return (
-    <section
-      style={{
-        backgroundColor: "#f3f3f3",
-      }}
-    >
-      <div className="mask d-flex align-items-center h-100 gradient-custom-3 w-100 p-2">
-        <div className="container h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div className="card  m-5" style={{ borderRadius: 15 }}>
-                <div className="card-body p-5">
-                  <h2 className="text-uppercase text-center mb-5">
-                    Create an account
-                  </h2>
-                  <form className="w-auto">
-                    <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="name">
-                        Your Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        className="form-control form-control-lg"
-                        // value={registerName}
-                        // onChange={(e) => setRegisterName(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="email">
-                        Your Email
-                      </label>
-                      <input
-                        type="email"
-                        value={registerEmail}
-                        id="email"
-                        className="form-control form-control-lg"
-                        onChange={(e) => setRegisterEmail(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-outline mb-4">
-                      <label className="form-label" htmlFor="password">
-                        Password
-                      </label>
-                      <input
-                        type="password"
-                        id="password"
-                        className="form-control form-control-lg"
-                        value={registerPassword}
-                        onChange={(e) => setRegisterPassword(e.target.value)}
-                      />
-                    </div>
-
-                    <div className="form-check d-flex justify-content-center mb-5">
-                      <input
-                        className="form-check-input me-2"
-                        type="checkbox"
-                        defaultValue=""
-                        id="form2Example3cg"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="form2Example3g"
-                      >
-                        I agree all statements in
-                        <a href="#!" className="text-body">
-                          <u>Terms of service</u>
-                        </a>
-                      </label>
-                    </div>
-                    <div className="d-flex justify-content-center">
-                      <button
-                        onClick={registerFormSubmit}
-                        type="button"
-                        className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                        id={registerStyles.btn}
-                      >
-                        Register
-                      </button>
-                    </div>
-                    <p className="text-center text-muted mt-5 mb-0">
-                      Have already an account?{" "}
-                      <Link to="/login" className="fw-bold text-body">
-                        <u>Login here</u>
-                      </Link>
-                    </p>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="d-flex justify-content-center">
+      <div className="form-image d-md-block ">
+        <img
+          src={registerImage}
+          alt="sample-movie"
+          className={registerStyles.img}
+        />
       </div>
-    </section>
+      <div className="register-form">
+        <h1 className="form-title display-3 ">Register</h1>
+        <form id="register" onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="firstName" className="form-label">
+              First Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="firstName"
+              placeholder="Enter your first name.."
+              required
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="lastName" className="form-label">
+              Last Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="lastName"
+              placeholder="Enter your last name.."
+              required
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter your email adress.."
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter your password.."
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <input
+            id={registerStyles.btn}
+            type="submit"
+            className="btn btn-primary form-control"
+            value="Register"
+          />
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useMovieContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { sigIn } from "../../auth/firebase";
+import { signIn, signUpProvider } from "../../auth/firebase";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,27 +14,29 @@ const Login = () => {
   const { password, email, checkEmailLength, checkPasswordLength } =
     useMovieContext();
 
+  const googleHandlerProvider = () => {
+    signUpProvider(navigate);
+  };
   const loginSubmitHandler = (event) => {
     event.preventDefault();
-    sigIn(password, email, navigate);
-    console.log(password, email);
 
-    // if (password.length <= 0 || email.length <= 0) {
-    //   toast.warn(
-    //     "Required fields cannot be left blank",
-    //     { toastId: "asdasdasdasd" },
-    //     {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     }
-    //   );
-    // } else {
-    // }
+    if (password.length <= 0 || email.length <= 0) {
+      toast.warn(
+        "Required fields cannot be left blank",
+        { toastId: "asdasdasdasd" },
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    } else {
+      signIn(email, password, navigate);
+    }
   };
   return (
     <div className={loginStyles.container}>
@@ -44,7 +46,10 @@ const Login = () => {
       <section className={loginStyles.right}>
         <h1>Login</h1>
 
-        <form className={loginStyles["form-container"]}>
+        <form
+          onSubmit={loginSubmitHandler}
+          className={loginStyles["form-container"]}
+        >
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -64,11 +69,11 @@ const Login = () => {
           />
 
           <a href="/register">Forgot Your Password?</a>
+          <button className={loginStyles.btn}>Login</button>
+          <button onClick={googleHandlerProvider} className={loginStyles.btn}>
+            Continie with Google
+          </button>
         </form>
-        <button onClick={loginSubmitHandler} className={loginStyles.btn}>
-          Login
-        </button>
-        <button className={loginStyles.btn}>Continie with Google</button>
       </section>
       <ToastContainer
         position="top-right"

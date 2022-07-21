@@ -13,10 +13,10 @@ const Router = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="details" element={<MoveDetail />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/details/:id" element={<MoveDetail />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
   );

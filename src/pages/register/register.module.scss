@@ -9,3 +9,9 @@
     transform: scale(0.99);
   }
 }
+.img {
+  width: 45vw;
+  height: 120vh;
+  background-size: cover;
+  object-fit: fill;
+}
