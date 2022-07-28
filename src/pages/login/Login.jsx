@@ -3,9 +3,8 @@ import loginStyles from "../login/login.module.scss";
 import registerImage from "../../assests/register.jpg";
 import { useNavigate } from "react-router-dom";
 import { useMovieContext } from "../../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { signIn, signUpProvider } from "../../auth/firebase";
+import { toastWarnNotify } from "../../helpers/ToastNotify";
+import { signIn, signUpProvider, forgotPassword } from "../../auth/firebase";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,19 +20,7 @@ const Login = () => {
     event.preventDefault();
 
     if (password.length <= 0 || email.length <= 0) {
-      toast.warn(
-        "Required fields cannot be left blank",
-        { toastId: "asdasdasdasd" },
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+      toastWarnNotify("Required fields cannot be left blank");
     } else {
       signIn(email, password, navigate);
     }
@@ -68,24 +55,15 @@ const Login = () => {
             // value={password}
           />
 
-          <a href="/register">Forgot Your Password?</a>
+          {/* <div className="link" onClick={() => forgotPassword(email)}>
+            Forgot Your Password?
+          </div> */}
           <button className={loginStyles.btn}>Login</button>
           <button onClick={googleHandlerProvider} className={loginStyles.btn}>
             Continie with Google
           </button>
         </form>
       </section>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 };

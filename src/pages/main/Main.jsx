@@ -1,8 +1,6 @@
 import React from "react";
 import mainStyles from "../main/main.module.scss";
 import { useMovieContext } from "../../context/AuthContext";
-// import "react-toastify/dist/ReactToastify.css";
-
 import MovieCard from "../../components/MovieCard";
 import NotFound from "../notfound/NotFound";
 

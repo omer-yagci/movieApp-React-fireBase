@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { userObserver } from "../auth/firebase";
+import { toastWarnNotify } from "../helpers/ToastNotify";
 
 // ? Defining context
 export const MovieListContext = createContext();
@@ -54,7 +55,8 @@ const AuthContext = ({ children }) => {
     if (query && currentUser) {
       getDataFromMovies();
     } else if (!currentUser) {
-      alert("please login");
+      // alert("ananı sikiyim");
+      toastWarnNotify("Please log in to search a movie");
     }
   };
   const movieInputHandler = (e) => {

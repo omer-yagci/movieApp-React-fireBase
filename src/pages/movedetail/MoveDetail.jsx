@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const MoveDetail = () => {
-  const [movieDetails, setMovieDetails] = useState({});
+  const [movieDetails, setMovieDetails] = useState("thor");
   const { id } = useParams;
 
   const {
@@ -14,6 +14,7 @@ const MoveDetail = () => {
     vote_average,
     vote_count,
   } = movieDetails;
+  console.log(movieDetails);
 
   const API_KEY = process.env.REACT_APP_API_KEY;
   const movieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;

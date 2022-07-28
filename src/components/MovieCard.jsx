@@ -1,7 +1,7 @@
+import { AiFillStar } from "react-icons/ai";
 import defaultImg from "../assests/defaultImage.png";
 import { useNavigate } from "react-router-dom";
 import mainStyles from "../pages/main/main.module.scss";
-import { AiFillStar } from "react-icons/ai";
 import { useMovieContext } from "../context/AuthContext";
 import { toastWarnNotify } from "../helpers/ToastNotify";
 
@@ -17,10 +17,17 @@ const MovieCard = ({
 }) => {
   const navigate = useNavigate();
   const { currentUser } = useMovieContext();
+  // console.log(id);
 
   return (
-    <div className={mainStyles.grid} key={id}>
-      <div className={mainStyles["grid-item"]}>
+    <div className={mainStyles.grid}>
+      <div
+        onClick={() => {
+          navigate("/details/" + id);
+          !currentUser && toastWarnNotify("Please log in to see detail");
+        }}
+        className={mainStyles["grid-item"]}
+      >
         {currentUser && (
           <div className={mainStyles["vote"]}>
             <AiFillStar />
@@ -36,13 +43,7 @@ const MovieCard = ({
           <div className={mainStyles["card-content"]}>
             <h1 className={mainStyles["card-header"]}>{original_title}</h1>
             <p className={mainStyles["card-text"]}>{overview}</p>
-            <button
-              onClick={() => {
-                navigate("/details/" + id);
-                !currentUser && toastWarnNotify("Please log in to see detail");
-              }}
-              className={mainStyles["card-btn"]}
-            >
+            <button className={mainStyles["card-btn"]}>
               More Detail <span>→</span>
             </button>
           </div>

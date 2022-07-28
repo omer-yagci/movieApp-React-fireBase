@@ -26,27 +26,26 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_appId,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
 export const createUser = async (email, password, navigate, displayName) => {
+  //? yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
   try {
     let userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-
+    //? kullanıcı profilini güncellemek için kullanılan firebase metodu
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
     toastSuccessNotify("Registered successfully!");
     navigate("/");
     console.log(userCredential);
-    console.log(displayName);
   } catch (err) {
     toastErrorNotify(err.message);
   }
@@ -56,6 +55,7 @@ export const createUser = async (email, password, navigate, displayName) => {
 //* => Authentication => sign-in-method => enable Email/password
 //! Email/password ile girişi enable yap
 export const signIn = async (email, password, navigate) => {
+  //? mevcut kullanıcının giriş yapması için kullanılan firebase metodu
   try {
     let userCredential = await signInWithEmailAndPassword(
       auth,
@@ -64,7 +64,7 @@ export const signIn = async (email, password, navigate) => {
     );
     navigate("/");
     toastSuccessNotify("Logged in successfully!");
-
+    // sessionStorage.setItem('user', JSON.stringify(userCredential.user));
     console.log(userCredential);
   } catch (err) {
     toastErrorNotify(err.message);
@@ -73,6 +73,7 @@ export const signIn = async (email, password, navigate) => {
 };
 
 export const userObserver = (setCurrentUser) => {
+  //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setCurrentUser(user);
@@ -87,9 +88,15 @@ export const logOut = () => {
   signOut(auth);
 };
 
+//* https://console.firebase.google.com/
+//* => Authentication => sign-in-method => enable Google
+//! Google ile girişi enable yap
+//* => Authentication => sign-in-method => Authorized domains => add domain
+//! Projeyi deploy ettikten sonra google sign-in çalışması için domain listesine deploy linkini ekle
 export const signUpProvider = (navigate) => {
+  //? Google ile giriş yapılması için kullanılan firebase metodu
   const provider = new GoogleAuthProvider();
-
+  //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
