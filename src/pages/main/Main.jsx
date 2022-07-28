@@ -1,19 +1,16 @@
 import React from "react";
 import mainStyles from "../main/main.module.scss";
 import { useMovieContext } from "../../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import MoveDetail from "../movedetail/MoveDetail";
-import { useNavigate } from "react-router-dom";
 
-import defaultImg from "../../assests/defaultImage.png";
-const baseURL = "https://image.tmdb.org/t/p/w500";
+// import "react-toastify/dist/ReactToastify.css";
+
+import MovieCard from "../../components/MovieCard";
+import NotFound from "../notfound/NotFound";
 
 const Main = () => {
-  // const { id } = useParams;
   const { isLogin, setIsLoggin, movieInputHandler, movie, formSubmitHandler } =
     useMovieContext();
-  const navigate = useNavigate();
+
   const { results } = movie;
 
   // const moreInfoClickHandler = () => {
@@ -21,10 +18,6 @@ const Main = () => {
   // };
 
   if (isLogin) {
-    // toast.success("Successful Login");
-    // setTimeout(() => {
-    //   toast.dismiss();
-    // }, 2000);
     return (
       <>
         <form
@@ -40,47 +33,10 @@ const Main = () => {
           <button className={mainStyles.btn}>Search</button>
         </form>
 
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         <main className={mainStyles.main}>
-          {results?.map((result, index) => {
-            const { backdrop_path, original_title, overview, title, id } =
-              result;
-            return (
-              <div className={mainStyles.grid} key={id}>
-                <div className={mainStyles["grid-item"]}>
-                  <div className={mainStyles["card"]}>
-                    <img
-                      className={mainStyles["card-img"]}
-                      src={backdrop_path ? baseURL + backdrop_path : defaultImg}
-                      alt={title}
-                    />
-                    <div className={mainStyles["card-content"]}>
-                      <h1 className={mainStyles["card-header"]}>
-                        {original_title}
-                      </h1>
-                      <p className={mainStyles["card-text"]}>{overview}</p>
-                      <button
-                        onClick={() => navigate("/details/" + id)}
-                        className={mainStyles["card-btn"]}
-                      >
-                        More Detail <span>→</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {results.map((result) => (
+            <MovieCard key={result.id} {...result} />
+          ))}
         </main>
       </>
     );
@@ -88,7 +44,7 @@ const Main = () => {
     setIsLoggin(false);
     return (
       <div>
-        <h1>HATA!</h1>
+        <NotFound />
       </div>
     );
   }

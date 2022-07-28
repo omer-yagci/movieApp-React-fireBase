@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import registerStyles from "../register/register.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createUser } from "../../auth/firebase";
 import registerImage from "../../assests/registerImage.jpg";
 
