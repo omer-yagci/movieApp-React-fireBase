@@ -13,10 +13,6 @@ const Main = () => {
 
   const { results } = movie;
 
-  // const moreInfoClickHandler = () => {
-  //   navigate("/details/" + id);
-  // };
-
   if (isLogin) {
     return (
       <>

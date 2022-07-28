@@ -1,6 +1,8 @@
 import defaultImg from "../assests/defaultImage.png";
 import { useNavigate } from "react-router-dom";
 import mainStyles from "../pages/main/main.module.scss";
+import { AiFillStar } from "react-icons/ai";
+import { useMovieContext } from "../context/AuthContext";
 
 const baseURL = "https://image.tmdb.org/t/p/w500";
 
@@ -12,15 +14,18 @@ const MovieCard = ({
   id,
   vote_average,
 }) => {
-  // console.log(results);
-  // const { backdrop_path, original_title, overview, title, id } = results;
-  // console.log(results.title);
   const navigate = useNavigate();
+  const { currentUser } = useMovieContext();
 
   return (
     <div className={mainStyles.grid} key={id}>
       <div className={mainStyles["grid-item"]}>
-        <div>{vote_average}</div>
+        {currentUser && (
+          <div className={mainStyles["vote"]}>
+            <AiFillStar />
+            {vote_average}
+          </div>
+        )}
         <div className={mainStyles["card"]}>
           <img
             className={mainStyles["card-img"]}
