@@ -44,10 +44,22 @@
   border-radius: 0.4rem;
   overflow: hidden;
   width: 30rem;
-
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: 0.2s;
+  position: relative;
+  &:hover {
+    z-index: 1;
+  }
+  .vote {
+    position: absolute;
+    background-color: #0d0d0d;
+    // width: 10%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: yellow;
+  }
 }
 
 .grid-item:hover {
