@@ -4,12 +4,18 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
+
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "../helpers/ToastNotify";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -93,5 +99,20 @@ export const signUpProvider = (navigate) => {
     .catch((error) => {
       // Handle Errors here.
       console.log(error);
+    });
+};
+
+export const forgotPassword = (email) => {
+  //? Email yoluyla şifre sıfırlama için kullanılan firebase metodu
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      // Password reset email sent!
+      toastWarnNotify("Please check your mail box!");
+      // alert("Please check your mail box!");
+    })
+    .catch((err) => {
+      toastErrorNotify(err.message);
+      // alert(err.message);
+      // ..
     });
 };
