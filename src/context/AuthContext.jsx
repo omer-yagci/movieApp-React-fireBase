@@ -51,7 +51,11 @@ const AuthContext = ({ children }) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    getDataFromMovies();
+    if (query && currentUser) {
+      getDataFromMovies();
+    } else if (!currentUser) {
+      alert("please login");
+    }
   };
   const movieInputHandler = (e) => {
     setQuery(e.target.value);

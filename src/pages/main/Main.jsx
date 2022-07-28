@@ -1,7 +1,6 @@
 import React from "react";
 import mainStyles from "../main/main.module.scss";
 import { useMovieContext } from "../../context/AuthContext";
-
 // import "react-toastify/dist/ReactToastify.css";
 
 import MovieCard from "../../components/MovieCard";
@@ -21,7 +20,7 @@ const Main = () => {
           className={mainStyles["form-container"]}
         >
           <input
-            type="text"
+            type="search"
             className={mainStyles.input}
             onChange={movieInputHandler}
             // value={query}
@@ -30,7 +29,7 @@ const Main = () => {
         </form>
 
         <main className={mainStyles.main}>
-          {results.map((result) => (
+          {results?.map((result) => (
             <MovieCard key={result.id} {...result} />
           ))}
         </main>

@@ -9,7 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-// import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
+import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -37,12 +37,12 @@ export const createUser = async (email, password, navigate, displayName) => {
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
-    // toastSuccessNotify("Registered successfully!");
+    toastSuccessNotify("Registered successfully!");
     navigate("/");
     console.log(userCredential);
     console.log(displayName);
   } catch (err) {
-    // toastErrorNotify(err.message);
+    toastErrorNotify(err.message);
   }
 };
 
@@ -57,11 +57,11 @@ export const signIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
-    // toastSuccessNotify("Logged in successfully!");
+    toastSuccessNotify("Logged in successfully!");
 
     console.log(userCredential);
   } catch (err) {
-    // toastErrorNotify(err.message);
+    toastErrorNotify(err.message);
     console.log(err);
   }
 };
@@ -88,7 +88,7 @@ export const signUpProvider = (navigate) => {
     .then((result) => {
       console.log(result);
       navigate("/");
-      // toastSuccessNotify("Logged out successfully!");
+      toastSuccessNotify("Logged out successfully!");
     })
     .catch((error) => {
       // Handle Errors here.

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import mainStyles from "../pages/main/main.module.scss";
 import { AiFillStar } from "react-icons/ai";
 import { useMovieContext } from "../context/AuthContext";
+import { toastWarnNotify } from "../helpers/ToastNotify";
 
 const baseURL = "https://image.tmdb.org/t/p/w500";
 
@@ -36,7 +37,10 @@ const MovieCard = ({
             <h1 className={mainStyles["card-header"]}>{original_title}</h1>
             <p className={mainStyles["card-text"]}>{overview}</p>
             <button
-              onClick={() => navigate("/details/" + id)}
+              onClick={() => {
+                navigate("/details/" + id);
+                !currentUser && toastWarnNotify("Please log in to see detail");
+              }}
               className={mainStyles["card-btn"]}
             >
               More Detail <span>→</span>
