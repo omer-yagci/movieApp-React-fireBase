@@ -1,6 +1,5 @@
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../auth/firebase";
-import navbarStyles from "../components/navbar.module.scss";
 import { useMovieContext } from "../context/AuthContext";
 
 const Navbar = () => {
