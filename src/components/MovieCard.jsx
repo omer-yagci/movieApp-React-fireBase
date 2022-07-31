@@ -17,7 +17,6 @@ const MovieCard = ({
 }) => {
   const navigate = useNavigate();
   const { currentUser } = useMovieContext();
-  // console.log(id);
 
   return (
     <div className={mainStyles.grid}>

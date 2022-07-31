@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const MoveDetail = () => {
-  const [movieDetails, setMovieDetails] = useState("thor");
-  const { id } = useParams;
+  const [movieDetails, setMovieDetails] = useState({});
+  const { id } = useParams();
 
   const {
     title,
