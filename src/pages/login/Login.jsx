@@ -58,11 +58,11 @@ const Login = () => {
           <div className="link" onClick={() => forgotPassword(email)}>
             Forgot Your Password?
           </div>
+          <button className={loginStyles.btn}>Login</button>
+          <button onClick={googleHandlerProvider} className={loginStyles.btn}>
+            Continie with Google
+          </button>
         </form>
-        <button className={loginStyles.btn}>Login</button>
-        <button onClick={googleHandlerProvider} className={loginStyles.btn}>
-          Continie with Google
-        </button>
       </section>
     </div>
   );
