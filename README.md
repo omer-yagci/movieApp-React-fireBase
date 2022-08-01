@@ -8,7 +8,7 @@ Project aims to create a Movie App.
 
 https://movieappfirebase.vercel.app/
 
-![!Form](moive-app.gif)
+![Form](moive-app.gif)
 
 ## Objective
 
