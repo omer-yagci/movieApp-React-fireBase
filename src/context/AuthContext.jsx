@@ -55,7 +55,6 @@ const AuthContext = ({ children }) => {
     if (query && currentUser) {
       getDataFromMovies();
     } else if (!currentUser) {
-      // alert("ananı sikiyim");
       toastWarnNotify("Please log in to search a movie");
     }
   };
